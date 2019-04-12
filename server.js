@@ -1,25 +1,28 @@
 const express = require('express');
+const hbs = require('hbs');
 
 var app = express();
 
-app.use(express.static(__dirname+'/public'))
+//set hbs as the view engine for express
+app.set('views','./layout')
+app.set('view engine','hbs');
 
-// app.get('/',(request,response)=>{
-//     response.send({
-//         name: 'Zubair',
-//         age: 21,
-//         subjects :['eng','math','hindi','science','sst'],
-//         pass :true,
-//         parents :{
-//             mother : 'Rifat ara',
-//             father : 'Bashir Ahmad'
-//         }
-//     })
-// })
+// app.use(express.static(__dirname+'/public'))
 
-// app.get('/about',(request,response)=>{
-//     response.send('<h1>This is the about route!</h1>')
-// })
+app.get('/',(request,response)=>{
+    response.render('homepage.hbs',{
+        pageTitle : 'Homepage',
+        currentYear : new Date().getFullYear(),
+        welcomeMsg : 'Hey there! Welcome to our website.'
+    })
+})
+
+app.get('/about',(request,response)=>{
+    response.render('about.hbs',{
+        pageTitle : 'About Page',
+        currentYear : new Date().getFullYear()
+    })
+})
 
 // app.get('/bad',(req,res)=>{
 //     res.send({
