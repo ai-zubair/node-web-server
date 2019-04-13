@@ -10,22 +10,24 @@ hbs.registerPartials(__dirname+'/layout/partials')
 app.set('views','./layout')
 app.set('view engine','hbs');
 
+//using the hbs helpers
+hbs.registerHelper('getCurrentYear',(username , mood)=>`Hey ${username} why so ${mood} in ${new Date().getFullYear()}?`)
+
+hbs.registerHelper('screamIt',(welcomeMsg)=>welcomeMsg.toUpperCase());
+
 //serving static assets using express
 // app.use(express.static(__dirname+'/public'))
 
 //rendering templates using express' response.render
 app.get('/',(request,response)=>{
     response.render('homepage.hbs',{
-        pageTitle : 'Homepage',
-        currentYear : new Date().getFullYear(),
-        welcomeMsg : 'Hey there! Welcome to our website.'
+        pageTitle : 'Homepage'
     })
 })
 
 app.get('/about',(request,response)=>{
     response.render('about.hbs',{
-        pageTitle : 'About Page',
-        currentYear : new Date().getFullYear()
+        pageTitle : 'About Page'
     })
 })
 
