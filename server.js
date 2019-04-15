@@ -55,6 +55,12 @@ app.get('/about',(request,response)=>{
     })
 })
 
+app.get('/projects',(request,response)=>{
+    response.render('projects',{
+        pageTitle : 'Projects Page'
+    })
+})
+
 //express' get http request route handling
 app.get('/bad',(req,res)=>{
     res.send({
